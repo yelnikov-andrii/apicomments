@@ -70,7 +70,8 @@ import { v4 as uuidv4 } from 'uuid';
 // });
 
 const client = new Client({
-  host: 'dpg-cf962jarrk0e2av109fg-a.oregon-postgres.render.com',
+  // host: 'dpg-cf962jarrk0e2av109fg-a.oregon-postgres.render.com',
+  host: 'dpg-cf962jarrk0e2av109fg-a',
   user: 'test_zusn_user',
   password: 'kJrUAYN3i4Q5D6ZSVrDcePPNrsIAXHhF',
   port: 5432,
