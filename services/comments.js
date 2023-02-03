@@ -76,7 +76,7 @@ const client = new Client({
   password: 'kJrUAYN3i4Q5D6ZSVrDcePPNrsIAXHhF',
   port: 5432,
   database: 'test_zusn',
-  // ssl: true,
+  ssl: true,
 });
 
 
@@ -102,7 +102,7 @@ export const getSelectedComments = async (parentid) => {
   const result = await client.query(`
   SELECT * FROM public.comments
   WHERE parentid=$1
-  ORDER BY created_at DESC  
+  ORDER BY created_at DESC
   `, [parentid]);
   return result.rows;
 };
