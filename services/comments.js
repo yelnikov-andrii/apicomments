@@ -76,7 +76,7 @@ const client = new Client({
   password: 'kJrUAYN3i4Q5D6ZSVrDcePPNrsIAXHhF',
   port: 5432,
   database: 'test_zusn',
-  ssl: true,
+  // ssl: true,
 });
 
 
