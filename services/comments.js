@@ -70,12 +70,13 @@ import { v4 as uuidv4 } from 'uuid';
 // });
 
 const client = new Client({
-  // host: 'dpg-cf962jarrk0e2av109fg-a.oregon-postgres.render.com',
-  host: 'dpg-cf962jarrk0e2av109fg-a',
+  host: 'dpg-cf962jarrk0e2av109fg-a.oregon-postgres.render.com',
+  // host: 'dpg-cf962jarrk0e2av109fg-a',
   user: 'test_zusn_user',
   password: 'kJrUAYN3i4Q5D6ZSVrDcePPNrsIAXHhF',
   port: 5432,
   database: 'test_zusn',
+  ssl: true,
 });
 
 
@@ -100,9 +101,9 @@ export const getAllComments = async () => {
 export const getSelectedComments = async (parentid) => {
   const result = await client.query(`
   SELECT * FROM public.comments
-  WHERE parentid='${parentid}'
+  WHERE parentid=$1
   ORDER BY created_at DESC  
-  `);
+  `, [parentid]);
   return result.rows;
 };
 
@@ -113,9 +114,9 @@ export const addComment = async (comment) => {
   console.log(comment)
   const result =  await client.query(`
   INSERT INTO comments (id, username, useremail, text, homepage, likes, parentid, hascomments)
-  VALUES ('${id}', '${username}', '${useremail}', '${text}', '${homepage}', '${likes}', '${parentid}', '${hascomments}');
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
   UPDATE comments
   SET hascomments='TRUE'
   WHERE id = '${parentid}'
-  `)
+  `[id, username, useremail, text, homepage, likes, parentid, hascomments])
 }
